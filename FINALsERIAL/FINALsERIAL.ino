@@ -21,48 +21,40 @@ void loop() {
     
     if(inputString=="ON"){
       
-      digitalWrite(bulb,HIGH);
-      digitalWrite(bulb2,HIGH);
+        digitalWrite(bulb,HIGH);
+        digitalWrite(bulb2,HIGH);
       
     }
     else if (inputString=="OFF"){
-      digitalWrite(bulb,LOW);
-      digitalWrite(bulb2,LOW);
+        digitalWrite(bulb,LOW);
+        digitalWrite(bulb2,LOW);
     }
 
     else if (inputString=="INTERRUPT"){
-      
-      if(digitalRead(bulb)==HIGH){
+        if(digitalRead(bulb)==HIGH){
         digitalWrite(bulb,LOW);
         digitalWrite(bulb2,LOW);
         Serial.println("negative");
-      }
-      else if (digitalRead(bulb)==LOW){
+        }
+        else if (digitalRead(bulb)==LOW){
         digitalWrite(bulb,HIGH);
         digitalWrite(bulb2,HIGH);
         Serial.println("positive");
-      }
-      
+      } 
     }
-    
-
     
     inputString = "";
     stringComplete = false;
-    
   }
 }
 
 
 void serialEvent() {
   while (Serial.available()) {
-
-    char inChar = (char)Serial.read();
-
-    inputString += inChar;
-    
-    if (inChar == '\n') {
+      char inChar = (char)Serial.read();
+      inputString += inChar;
+      if (inChar == '\n') {
       stringComplete = true;
-    }
+      }
   }
 }
